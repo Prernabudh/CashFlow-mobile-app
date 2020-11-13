@@ -18,7 +18,7 @@ export const get = (params) => {
       })
       .catch((e) => {
         store.dispatch(actions.stopLoading());
-        store.dispatch(actions.setError(e.message));
+        store.dispatch(actions.setError(e.response.data.message));
         reject(e);
       });
   });
@@ -44,8 +44,7 @@ export const post = (params) => {
       })
       .catch((e) => {
         store.dispatch(actions.stopLoading());
-        console.log(e);
-        store.dispatch(actions.setError(e.message));
+        store.dispatch(actions.setError(e.response.data.message));
         reject(e);
       });
   });

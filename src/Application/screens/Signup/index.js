@@ -85,9 +85,7 @@ const Signup = (props) => {
       },
     })
       .then((data) => {
-        if (data.message == 'User created!') {
-          props.navigation.navigate('Login');
-        }
+        props.navigation.navigate('Login');
       })
       .catch((e) => {
         console.log(e);
@@ -95,7 +93,10 @@ const Signup = (props) => {
   };
 
   const sendOtp = () => {
-    post({route: '/api/users/sendOtp', body: {email: input.email.value}})
+    post({
+      route: '/api/users/sendOtp',
+      body: {email: input.email.value, username: input.username.value},
+    })
       .then((data) => {
         setVerify(true);
       })

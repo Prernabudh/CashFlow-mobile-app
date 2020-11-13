@@ -5,7 +5,7 @@ import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../Home';
 import ProfileScreen from '../Profile';
 import {primary} from '../../constants/ColorConstants';
-
+import Toast from '../../hoc/Toast';
 const Tab = createBottomTabNavigator();
 
 const BottomNav = () => {
@@ -32,7 +32,14 @@ const BottomNav = () => {
         activeTintColor: primary,
         inactiveTintColor: 'gray',
       }}>
-      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen
+        name="Home"
+        component={(props) => (
+          <Toast>
+            <HomeScreen navigation={props.navigation}></HomeScreen>
+          </Toast>
+        )}
+      />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
